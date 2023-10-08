@@ -5,6 +5,9 @@ import { css, cx } from '@emotion/css';
 import { useStyles2, useTheme2 } from '@grafana/ui';
 import { ConnectForm } from './connect-form';
 import { useStore, useStream } from '../state';
+import { VideoStream } from './video-stream';
+import { MotionArrows } from './motion-arrows';
+import { useMotionControls } from '../motion';
 
 interface Props extends PanelProps<SimpleOptions> {}
 
@@ -32,6 +35,8 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
   const theme = useTheme2();
   const styles = useStyles2(getStyles);
   const { status, connectOrDisconnect, streamClient, baseClient } = useStore();
+  const stream = useStream(streamClient, 'cam');
+  const [motionState, requestMotion] = useMotionControls(baseClient);
   return (
     <div
       className={cx(
@@ -43,9 +48,11 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
       )}
     >
       <ConnectForm status={status} onSubmit={connectOrDisconnect} />
+      <VideoStream stream={stream}>
+
+      </VideoStream>
       <div className={styles.textBox}>
-        {options.showSeriesCount && <div>Number of series: {data.series.length}</div>}
-        <div>Text option value: {options.text}</div>
+        <div>Connection Status: {status}</div>
       </div>
     </div>
   );
