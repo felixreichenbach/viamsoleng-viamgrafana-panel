@@ -13,6 +13,7 @@ import {
   } from '../state';
   
   import type { RobotCredentials } from '../client';
+  import React from 'react';
   
   export interface ConnectFormProps {
     status: ClientStatus;
@@ -33,8 +34,8 @@ import {
     [CONNECTED]: 'Disconnect',
   };
   
-  const INITIAL_HOSTNAME = import.meta.env.VITE_ROBOT_HOSTNAME ?? '';
-  const INITIAL_SECRET = import.meta.env.VITE_ROBOT_SECRET ?? '';
+  const INITIAL_HOSTNAME = '' //import.meta.env.VITE_ROBOT_HOSTNAME ?? '';
+  const INITIAL_SECRET = '' //import.meta.env.VITE_ROBOT_SECRET ?? '';
   
   export const ConnectForm = (props: ConnectFormProps): JSX.Element => {
     const { status, onSubmit } = props;
