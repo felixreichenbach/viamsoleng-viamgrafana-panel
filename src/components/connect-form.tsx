@@ -1,4 +1,4 @@
-import {
+import React, {
     useState,
     type ChangeEventHandler,
     type FormEventHandler,
@@ -13,7 +13,6 @@ import {
   } from '../state';
   
   import type { RobotCredentials } from '../client';
-  import React from 'react';
   
   export interface ConnectFormProps {
     status: ClientStatus;
@@ -87,3 +86,4 @@ import {
       </form>
     );
   };
+

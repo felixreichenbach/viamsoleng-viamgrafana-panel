@@ -1,5 +1,4 @@
-import React from 'react'
-import { useRef, useEffect, type ReactNode } from 'react';
+import React, { useRef, useEffect, type ReactNode } from 'react';
 
 export interface VideoStreamProps {
   stream?: MediaStream;
@@ -23,3 +22,4 @@ export const VideoStream = (props: VideoStreamProps): JSX.Element => {
     </div>
   );
 };
+
