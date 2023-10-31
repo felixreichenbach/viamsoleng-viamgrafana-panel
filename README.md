@@ -19,5 +19,3 @@ Once the plugin is installed, you might have to restart the Grafana service. You
 ![Configuration 3](media/videopanel-config_3.png)
 
 ![Configuration 4](media/videopanel-config_4.png)
-
-![Configuration 5](media/videopanel-config_5.png)
