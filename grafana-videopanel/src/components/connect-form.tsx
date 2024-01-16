@@ -33,8 +33,8 @@ import React, {
     [CONNECTED]: 'Disconnect',
   };
   
-  const INITIAL_HOSTNAME = '' //import.meta.env.VITE_ROBOT_HOSTNAME ?? '';
-  const INITIAL_SECRET = '' //import.meta.env.VITE_ROBOT_SECRET ?? '';
+  const INITIAL_HOSTNAME = ''
+  const INITIAL_SECRET = ''
   
   export const ConnectForm = (props: ConnectFormProps): JSX.Element => {
     const { status, onSubmit } = props;
@@ -57,7 +57,7 @@ import React, {
     return (
       <form className="flex flex-col p-4 w-96" onSubmit={handleSubmit}>
         <label className="flex flex-col mb-1">
-          Remote Address
+          Smart Machine Address
           <input
             type="text"
             className="px-1 border-solid border-2 border-black"
