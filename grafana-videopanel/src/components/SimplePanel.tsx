@@ -6,8 +6,9 @@ import { useStyles2 } from '@grafana/ui';
 import { ConnectForm } from './connect-form';
 import { useStore, useStream } from '../state';
 import { VideoStream } from './video-stream';
+import { CameraSelector } from './CameraSelector';
 
-interface Props extends PanelProps<SimpleOptions> {}
+interface Props extends PanelProps<SimpleOptions> { }
 
 const getStyles = () => {
   return {
@@ -32,7 +33,7 @@ const getStyles = () => {
 export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) => {
   const styles = useStyles2(getStyles);
   const { status, connectOrDisconnect, streamClient } = useStore();
-  const stream = useStream(streamClient, 'cam');
+  const stream = useStream(streamClient, 'camera');
   //const [motionState, requestMotion] = useMotionControls(baseClient);
   return (
     <div
@@ -45,6 +46,7 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
       )}
     >
       <ConnectForm status={status} onSubmit={connectOrDisconnect} />
+      <CameraSelector></CameraSelector>
       <VideoStream stream={stream}>
 
       </VideoStream>
