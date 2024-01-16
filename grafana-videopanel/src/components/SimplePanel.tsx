@@ -8,7 +8,9 @@ import { useStore, useStream } from '../state';
 import { VideoStream } from './video-stream';
 import { CameraSelector } from './CameraSelector';
 
-interface Props extends PanelProps<SimpleOptions> { }
+interface Props extends PanelProps<SimpleOptions> {
+
+}
 
 const getStyles = () => {
   return {
@@ -31,9 +33,16 @@ const getStyles = () => {
 };
 
 export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) => {
+  /*
+  const [camera, setCamera] = useState("camera")
+
+  async function updateCamera(name: string) {
+    setCamera(name)
+  }
+*/
   const styles = useStyles2(getStyles);
   const { status, connectOrDisconnect, streamClient } = useStore();
-  const stream = useStream(streamClient, 'camera');
+  const stream = useStream(streamClient, "camera");
   //const [motionState, requestMotion] = useMotionControls(baseClient);
   return (
     <div

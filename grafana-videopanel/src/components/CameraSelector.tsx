@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { AsyncSelect } from '@grafana/ui';
 import { SelectableValue } from "@grafana/data";
 
-export const CameraSelector = () => {
+export function CameraSelector() {
+
   const [value, setValue] = useState<SelectableValue<string>>();
-  const options: SelectableValue<any>[] = [{ label: 'Basic option', value: 0 }]
 
   const loadAsyncOptions = () => {
-    return new Promise<Array<SelectableValue<any>>>((resolve) => {
+    return new Promise<Array<SelectableValue<string>>>((resolve) => {
       setTimeout(() => {
-        resolve(options);
+        resolve([{label: "Option 1", value: "0"}, {label: "Option 2", value: "1"}]);
       }, 2000);
     });
   };
