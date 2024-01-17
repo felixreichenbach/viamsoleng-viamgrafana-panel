@@ -2,9 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { RobotClient, StreamClient, BaseClient } from '@viamrobotics/sdk';
 import {
   getRobotClient,
-  getBaseClient,
   getStreamClient,
-  //getStream,
   type RobotCredentials,
 } from './client';
 
@@ -25,7 +23,6 @@ interface ClientStateTransitioning {
 interface ClientStateConnected {
   status: typeof CONNECTED;
   client: RobotClient;
-  baseClient: BaseClient;
   streamClient: StreamClient;
 }
 
@@ -58,8 +55,7 @@ export const useStore = (): Store => {
       getRobotClient(credentials)
         .then((client) => {
           const streamClient = getStreamClient(client);
-          const baseClient = getBaseClient(client);
-          setState({ status: CONNECTED, client, baseClient, streamClient });
+          setState({ status: CONNECTED, client, streamClient });
         })
         .catch((error: unknown) => setState({ status: DISCONNECTED, error }));
     } else if (state.status === CONNECTED) {
@@ -76,7 +72,6 @@ export const useStore = (): Store => {
     connectOrDisconnect,
     status: state.status,
     client: state.status === CONNECTED ? state.client : undefined,
-    baseClient: state.status === CONNECTED ? state.baseClient : undefined,
     streamClient: state.status === CONNECTED ? state.streamClient : undefined,
   };
 };

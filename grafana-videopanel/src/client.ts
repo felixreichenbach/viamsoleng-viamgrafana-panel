@@ -1,7 +1,6 @@
 import {
     createRobotClient,
     StreamClient,
-    BaseClient,
     type RobotClient,
   } from '@viamrobotics/sdk';
   
@@ -42,13 +41,4 @@ import {
   export const getStreamClient = (client: RobotClient): StreamClient => {
     return new StreamClient(client);
   };
-  
-  /**
-   * BaseClient factory
-   *
-   * @param client A connected RobotClient
-   * @returns A connected base client
-   */
-  export const getBaseClient = (client: RobotClient): BaseClient => {
-    return new BaseClient(client, 'viam_base');
-  };
+
