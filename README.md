@@ -19,3 +19,8 @@ Once the plugin is installed, you might have to restart the Grafana service. You
 ![Configuration 3](media/videopanel-config_3.png)
 
 ![Configuration 4](media/videopanel-config_4.png)
+
+
+## Plugin Development
+
+You can find more technical / developer oriented in this [README.md](grafana-videopanel/README.md) in the grafana-videopanel folder.

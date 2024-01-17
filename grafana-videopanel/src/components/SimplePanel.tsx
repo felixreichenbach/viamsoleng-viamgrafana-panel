@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PanelProps } from '@grafana/data';
 import { SimpleOptions } from 'types';
 import { css, cx } from '@emotion/css';
@@ -7,7 +7,9 @@ import { ConnectForm } from './connect-form';
 import { useStore, useStream } from '../state';
 import { VideoStream } from './video-stream';
 
-interface Props extends PanelProps<SimpleOptions> {}
+interface Props extends PanelProps<SimpleOptions> {
+
+}
 
 const getStyles = () => {
   return {
@@ -30,9 +32,16 @@ const getStyles = () => {
 };
 
 export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) => {
+
+  const [camera, setCamera] = useState("")
+
+  function handleCamera(name: string) {
+    setCamera(name)
+  }
+
   const styles = useStyles2(getStyles);
-  const { status, connectOrDisconnect, streamClient } = useStore();
-  const stream = useStream(streamClient, 'cam');
+  const { client, status, connectOrDisconnect, streamClient } = useStore();
+  const stream = useStream(streamClient, camera);
   //const [motionState, requestMotion] = useMotionControls(baseClient);
   return (
     <div
@@ -44,10 +53,8 @@ export const SimplePanel: React.FC<Props> = ({ options, data, width, height }) =
         `
       )}
     >
-      <ConnectForm status={status} onSubmit={connectOrDisconnect} />
-      <VideoStream stream={stream}>
-
-      </VideoStream>
+      <ConnectForm client={client} status={status} onSubmit={connectOrDisconnect} setCamera={handleCamera} />
+      <VideoStream stream={stream}></VideoStream>
       <div className={styles.textBox}>
         <div>Connection Status: {status}</div>
       </div>
